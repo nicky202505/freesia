@@ -14,17 +14,30 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function(origin, callback) {
-    // origin이 없는 경우 (모바일 앱, Postman 등) 또는 허용된 도메인인 경우
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+  origin: (origin, callback) => {
+    // Origin 없는 요청 (모바일 브라우저, 일부 환경) 허용
+    if (!origin) return callback(null, true);
+
+    // 로컬 개발 허용
+    if (origin === 'http://localhost:5173') {
+      return callback(null, true);
     }
+
+    // 모든 Vercel 도메인 허용 (production + preview)
+    if (origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+
+    return callback(new Error(`Not allowed by CORS: ${origin}`));
   },
-  credentials: true
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
 }));
-app.use(express.json());
+
+
+app.options('*', cors());
+
+app.use(express.json());  
 
 // 헬스체크 엔드포인트
 app.get('/', (req, res) => {
