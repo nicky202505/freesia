@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+
+/* 하단 네비게이션 */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 800px; /* 태블릿 기준 최대 너비 */
+  background: white;
+  border-top: 1px solid #E0E0E0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 네비게이션 아이템 */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #999;
+  flex: 1;
+  max-width: 120px;
+}
+
+.nav-item svg {
+  transition: all 0.3s ease;
+  width: 28px;
+  height: 28px;
+}
+
+.nav-label {
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* 활성 상태 */
+.nav-item.active {
+  color: #FFA726;
+}
+
+.nav-item.active svg {
+  transform: scale(1.1);
+}
+
+.nav-item.active .nav-label {
+  font-weight: 600;
+}
+
+/* 호버 효과 (데스크톱) */
+@media (hover: hover) {
+  .nav-item:hover:not(.active) {
+    color: #FFD93D;
+  }
+}
+
+/* 탭 효과 */
+.nav-item:active {
+  transform: scale(0.95);
+}
+
+/* 태블릿 (768px 이하) */
+@media (max-width: 768px) {
+  .bottom-nav {
+    max-width: 100%;
+    padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+  }
+
+  .nav-item {
+    padding: 8px 16px;
+  }
+
+  .nav-item svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .nav-label {
+    font-size: 12px;
+  }
+}
+
+/* 모바일 (480px 이하) */
+@media (max-width: 480px) {
+  .bottom-nav {
+    padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+  }
+
+  .nav-item {
+    padding: 6px 12px;
+    gap: 4px;
+  }
+
+  .nav-item svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .nav-label {
+    font-size: 11px;
+  }
+}

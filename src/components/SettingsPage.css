@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+
+/* 컨테이너 */
+.settings-container {
+  width: 100%;
+  min-height: 100vh;
+  max-width: 800px; /* 태블릿 기준 최대 너비 */
+  background: #FFF0F0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Noto Sans KR', sans-serif;
+  padding-bottom: 80px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 헤더 */
+.settings-header {
+  background: linear-gradient(135deg, #FFD93D 0%, #FFA726 100%);
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(255, 193, 7, 0.2);
+}
+
+.header-subtitle {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.header-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.settings-header-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  margin: 0;
+}
+
+/* 메인 콘텐츠 */
+.settings-main {
+  flex: 1;
+  padding: 24px 20px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 섹션 */
+.settings-section {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+/* 프로필 섹션 */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #FFD93D 0%, #FFA726 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.profile-info {
+  flex: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 12px;
+  align-items: center;
+}
+
+.profile-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+
+.profile-value {
+  font-size: 14px;
+  color: #333;
+}
+
+.profile-edit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #FFA726;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.profile-edit-btn:hover {
+  background: #FF9800;
+}
+
+/* 설정 리스트 */
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item span {
+  font-size: 14px;
+  color: #333;
+}
+
+/* 토글 버튼 */
+.toggle-btn {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid #E0E0E0;
+  background: white;
+  color: #999;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  min-width: 60px;
+}
+
+.toggle-btn.active {
+  background: #FFA726;
+  border-color: #FFA726;
+  color: white;
+}
+
+/* 설정 링크 */
+.settings-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #F0F0F0;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  text-align: left;
+}
+
+.settings-link:last-child {
+  border-bottom: none;
+}
+
+.settings-link span {
+  font-size: 14px;
+  color: #333;
+}
+
+.settings-link svg {
+  color: #999;
+  flex-shrink: 0;
+}
+
+.settings-link:hover {
+  background: #FAFAFA;
+}
+
+/* 버전 정보 */
+.version-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.version-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.version-value {
+  font-size: 14px;
+  color: #999;
+}
+
+/* 로그아웃 버튼 */
+.logout-button {
+  width: 100%;
+  padding: 14px;
+  background: #F44336;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.logout-button:hover {
+  background: #E53935;
+}
+
+/* 회원 탈퇴 */
+.withdrawal-link {
+  width: 100%;
+  padding: 12px;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.withdrawal-link:hover {
+  color: #666;
+}
+
+/* 애니메이션 */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.settings-section {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* 태블릿 (768px 이하) */
+@media (max-width: 768px) {
+  .settings-header {
+    padding: 16px;
+  }
+
+  .header-title {
+    font-size: 24px;
+  }
+
+  .settings-main {
+    padding: 20px 16px;
+  }
+
+  .settings-section {
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+
+  .profile-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .profile-info {
+    gap: 6px 10px;
+  }
+
+  .profile-label,
+  .profile-value,
+  .settings-item span,
+  .settings-link span {
+    font-size: 13px;
+  }
+}
+
+/* 모바일 (480px 이하) */
+@media (max-width: 480px) {
+  .settings-main {
+    padding: 16px 12px;
+  }
+
+  .settings-section {
+    padding: 14px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+  }
+
+  .profile-card {
+    gap: 12px;
+  }
+
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+  }
+}
