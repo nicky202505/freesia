@@ -5,11 +5,35 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
-// CORS 설정
-app.use(cors());
+// CORS 설정 (개발/프로덕션 환경 지원)
+const allowedOrigins = [
+  'http://localhost:5173',  // 로컬 개발
+  'https://your-vercel-url.vercel.app'  // Vercel 배포 후 실제 주소로 변경하세요
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // origin이 없는 경우 (모바일 앱, Postman 등) 또는 허용된 도메인인 경우
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
 app.use(express.json());
+
+// 헬스체크 엔드포인트
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'ok',
+    message: '🌼 프리지아 서버가 정상 작동 중입니다!',
+    timestamp: new Date().toISOString()
+  });
+});
 
 // Claude API 프록시 엔드포인트
 app.post('/api/chat', async (req, res) => {
