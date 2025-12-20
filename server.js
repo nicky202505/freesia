@@ -15,7 +15,7 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // Origin 없는 요청 허용
+    if (!origin) return callback(null, true);
     if (origin === 'http://localhost:5173') return callback(null, true);
     if (origin.endsWith('.vercel.app')) return callback(null, true);
     return callback(new Error(`Not allowed by CORS: ${origin}`));
@@ -24,10 +24,9 @@ app.use(cors({
   allowedHeaders: ['Content-Type'],
 }));
 
+// app.options('*', cors());  // ← 이 라인 삭제 또는 주석 처리!
 
-app.options('*', cors());
-
-app.use(express.json());   
+app.use(express.json());
 
 // 헬스체크 엔드포인트
 app.get('/', (req, res) => {
