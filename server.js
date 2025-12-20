@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 // CORS 설정 (개발/프로덕션 환경 지원)
 const allowedOrigins = [
   'http://localhost:5173',  // 로컬 개발
-  'https://your-vercel-url.vercel.app'  // Vercel 배포 후 실제 주소로 변경하세요
+  'https://freesia-psi.vercel.app'  // Vercel 배포 후 실제 주소로 변경하세요
 ];
 
 app.use(cors({
