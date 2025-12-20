@@ -15,19 +15,9 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Origin 없는 요청 (모바일 브라우저, 일부 환경) 허용
-    if (!origin) return callback(null, true);
-
-    // 로컬 개발 허용
-    if (origin === 'http://localhost:5173') {
-      return callback(null, true);
-    }
-
-    // 모든 Vercel 도메인 허용 (production + preview)
-    if (origin.endsWith('.vercel.app')) {
-      return callback(null, true);
-    }
-
+    if (!origin) return callback(null, true); // Origin 없는 요청 허용
+    if (origin === 'http://localhost:5173') return callback(null, true);
+    if (origin.endsWith('.vercel.app')) return callback(null, true);
     return callback(new Error(`Not allowed by CORS: ${origin}`));
   },
   methods: ['GET', 'POST', 'OPTIONS'],
@@ -37,7 +27,7 @@ app.use(cors({
 
 app.options('*', cors());
 
-app.use(express.json());  
+app.use(express.json());   
 
 // 헬스체크 엔드포인트
 app.get('/', (req, res) => {
