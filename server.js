@@ -1,31 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// CORS 설정 (개발/프로덕션 환경 지원)
-const allowedOrigins = [
-  'http://localhost:5173',  // 로컬 개발
-  'https://freesia-psi.vercel.app'  // Vercel 배포 후 실제 주소로 변경하세요
-];
-
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (origin === 'http://localhost:5173') return callback(null, true);
-    if (origin.endsWith('.vercel.app')) return callback(null, true);
-    return callback(new Error(`Not allowed by CORS: ${origin}`));
-  },
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
-}));
-
-// app.options('*', cors());  // ← 이 라인 삭제 또는 주석 처리!
-
+// CORS 설정 (간단 버전)
+app.use(cors());
 app.use(express.json());
 
 // 헬스체크 엔드포인트
@@ -41,8 +21,6 @@ app.get('/', (req, res) => {
 app.post('/api/chat', async (req, res) => {
   try {
     const { messages } = req.body;
-    
-
     
     // 감정 코칭 시스템 프롬프트
     const systemPrompt = `당신은 10년 경력의 따뜻하고 공감적인 심리상담사입니다.
@@ -86,7 +64,7 @@ app.post('/api/chat', async (req, res) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.CLAUDE_API_KEY,  
+        'x-api-key': process.env.CLAUDE_API_KEY,
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
