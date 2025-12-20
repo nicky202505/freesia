@@ -93,10 +93,15 @@ const HomePage = () => {
     }
 
     try {
-      const conversationHistory = updatedMessages;
+      const conversationHistory = updatedMessages; 
+
+        // API URL 설정 (개발/프로덕션 환경 자동 감지)
+  const API_URL = import.meta.env.PROD 
+    ? 'https://freesia-production-e44e.up.railway.app'
+    : 'http://localhost:3001';
       
       // Claude API 호출
-      const response = await fetch('http://localhost:3001/api/chat', {
+      const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
