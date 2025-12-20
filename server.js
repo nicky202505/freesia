@@ -40,6 +40,14 @@ app.post('/api/chat', async (req, res) => {
   try {
     const { messages } = req.body;
     
+    // 디버깅: API 키 확인
+    console.log('===== API 키 디버깅 =====');
+    console.log('API 키 존재:', !!process.env.CLAUDE_API_KEY);
+    console.log('API 키 길이:', process.env.CLAUDE_API_KEY?.length);
+    console.log('API 키 시작:', process.env.CLAUDE_API_KEY?.substring(0, 15));
+    console.log('API 키 끝:', process.env.CLAUDE_API_KEY?.substring(process.env.CLAUDE_API_KEY.length - 5));
+    console.log('========================');
+    
     // 감정 코칭 시스템 프롬프트
     const systemPrompt = `당신은 10년 경력의 따뜻하고 공감적인 심리상담사입니다.
 
