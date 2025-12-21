@@ -4,8 +4,24 @@ import cors from 'cors';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// CORS 설정 (간단 버전)
-app.use(cors());
+
+// CORS 설정  (수정) 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://freesia-psi.vercel.app'
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
+
 app.use(express.json());
 
 // 헬스체크 엔드포인트
