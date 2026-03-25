@@ -270,4 +270,60 @@
     font-size: 14px;
     padding: 13px;
   }
+} 
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+ 
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: #e5e7eb;
+}
+ 
+.divider-text {
+  font-size: 13px;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+ 
+/* 비회원 버튼 */
+.guest-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background-color: #f9fafb;
+  border: 1.5px dashed #d1d5db;
+  border-radius: 12px;
+  color: #6b7280;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  margin-bottom: 4px;
+}
+ 
+.guest-button:hover {
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
+  color: #374151;
+}
+ 
+.guest-limit-badge {
+  position: absolute;
+  right: 16px;
+  font-size: 11px;
+  color: #f59e0b;
+  background-color: #fef3c7;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
 }

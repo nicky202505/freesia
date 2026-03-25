@@ -96,8 +96,11 @@ const HomePage = () => {
       const conversationHistory = updatedMessages; 
 
         // API URL 설정 (개발/프로덕션 환경 자동 감지)
-const API_URL = import.meta.env.PROD 
-  ? 'https://freesia-production-5de6.up.railway.app'  // ← 새 URL!
+
+
+
+  const API_URL = import.meta.env.PROD 
+  ? 'https://freesia-production-5de6.up.railway.app'
   : 'http://localhost:3001';
 
   
@@ -273,6 +276,8 @@ const API_URL = import.meta.env.PROD
       <BottomNav />
     </div>
   );
-};
+};  
+
+
 
 export default HomePage;

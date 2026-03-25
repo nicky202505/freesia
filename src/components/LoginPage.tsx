@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, UserX } from 'lucide-react';
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -23,6 +23,12 @@ const LoginPage = () => {
       console.error('로그인 실패:', error);
       setError('이메일 또는 비밀번호가 올바르지 않습니다.');
     }
+  };
+
+  // 비회원 로그인: 카운트 초기화 후 홈으로 이동
+  const handleGuestLogin = () => {
+    localStorage.setItem('freesia_guest_count', '0');
+    navigate('/home', { state: { isGuest: true } });
   };
 
   return (
@@ -86,6 +92,19 @@ const LoginPage = () => {
             </button>
           </form>
 
+          {/* 구분선 */}
+          <div className="divider">
+            <span className="divider-line" />
+            <span className="divider-text">또는</span>
+            <span className="divider-line" />
+          </div>
+
+          {/* 비회원 로그인 버튼 */}
+          <button onClick={handleGuestLogin} className="guest-button">
+            <UserX size={18} />
+            비회원으로 시작하기             
+          </button>
+
           <div className="login-footer">
             <p className="footer-text">
               계정이 없으신가요?{' '}
@@ -98,6 +117,8 @@ const LoginPage = () => {
       </main>
     </div>
   );
-};
+}; 
+
+
 
 export default LoginPage;
