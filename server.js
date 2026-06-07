@@ -6,16 +6,27 @@ import cors from 'cors';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const anthropicApiKey = process.env.CLAUDE_API_KEY || process.env.VITE_CLAUDE_API_KEY;
+
 
 // CORS 설정  (수정) 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://freesia-psi.vercel.app'
+  'https://freesia-psi.vercel.app',
+  'https://nicky202505.github.io',
+  'https://nicky202505.github.io/freesia',
+  'https://freesia-production-5de6.up.railway.app'
 ];
 
 app.use(cors({
   origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    const isAllowed =
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('.github.io') ||
+      origin.endsWith('.vercel.app');
+
+    if (isAllowed) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -70,11 +81,15 @@ app.post('/api/chat', async (req, res) => {
 "지금 많이 힘드시군요. 혼자 감당하기엔 너무 큰 무게예요. 자살예방 상담전화 1393, 정신건강 위기상담 1577-0199로 연락해보실 수 있어요."`;
  
     // Claude API 호출
+    if (!anthropicApiKey) {
+      throw new Error('Claude API key가 설정되지 않았습니다. CLAUDE_API_KEY 또는 VITE_CLAUDE_API_KEY를 확인하세요.');
+    }
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.CLAUDE_API_KEY,
+        'x-api-key': anthropicApiKey,
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
