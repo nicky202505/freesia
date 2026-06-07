@@ -6,7 +6,16 @@ import cors from 'cors';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const anthropicApiKey = process.env.CLAUDE_API_KEY || process.env.VITE_CLAUDE_API_KEY;
+const anthropicApiKey = (
+  process.env.CLAUDE_API_KEY ||
+  process.env.VITE_CLAUDE_API_KEY ||
+  ''
+).trim();
+const anthropicKeySource = process.env.CLAUDE_API_KEY
+  ? 'CLAUDE_API_KEY'
+  : process.env.VITE_CLAUDE_API_KEY
+    ? 'VITE_CLAUDE_API_KEY'
+    : 'none';
 
 
 // CORS 설정  (수정) 
@@ -121,4 +130,5 @@ app.post('/api/chat', async (req, res) => {
 // 서버 시작
 app.listen(PORT, () => {
   console.log(`🌼 프리지아 서버가 포트 ${PORT}에서 실행 중입니다!`);
+  console.log(`[config] Anthropic key source: ${anthropicKeySource}`);
 });
